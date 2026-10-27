@@ -1,0 +1,54 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run start",
+      "startServerReadyPattern": "started server on",
+      "startServerReadyTimeout": 30000,
+      "url": [
+        "http://localhost:3000/",
+        "http://localhost:3000/projects/govshield-bd",
+        "http://localhost:3000/resume"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "emulatedFormFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "onlyCategories": [
+          "performance",
+          "accessibility",
+          "best-practices",
+          "seo"
+        ]
+      }
+    },
+    "assert": {
+      "preset": "lighthouse:no-pwa",
+      "assertions": {
+        "categories:performance": ["warn", { "minScore": 0.85 }],
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:best-practices": ["warn", { "minScore": 0.9 }],
+        "categories:seo": ["error", { "minScore": 0.95 }],
+        "uses-https": "off",
+        "redirects-http": "off",
+        "uses-http2": "off",
+        "render-blocking-resources": ["warn", { "maxLength": 0 }],
+        "unused-javascript": ["warn", { "maxLength": 5 }],
+        "largest-contentful-paint": ["warn", { "maxNumericValue": 3000 }],
+        "first-contentful-paint": ["warn", { "maxNumericValue": 2000 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 600 }],
+        "interactive": ["warn", { "maxNumericValue": 5000 }],
+        "meta-description": "error",
+        "document-title": "error",
+        "html-has-lang": "error",
+        "link-text": "error",
+        "image-alt": "error",
+        "button-name": "error",
+        "color-contrast": "warn"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

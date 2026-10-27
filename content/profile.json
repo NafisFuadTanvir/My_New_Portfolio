@@ -1,0 +1,218 @@
+{
+  "name": "Nafis Fuad Tanvir",
+  "tagline": "Technology & Operations Professional · CSE Graduate",
+  "valueStatement": "A Computer Science graduate with hands-on experience in software quality assurance, MIS operations, and AI-powered workflows. I bring technical depth and operational clarity to teams — whether the role calls for quality engineering, operations management, or digital innovation.",
+  "location": "Chattogram, Bangladesh",
+  "availability": "Open to Officer, Junior Officer & Executive roles — Chattogram or remote",
+  "bio": [
+    "I am a CSE graduate with practical experience spanning software quality assurance, management information systems, and modern AI tooling. I have worked in professional environments — leading data integrity initiatives at MGH Group and building test automation frameworks independently — and I understand how technology drives operational outcomes.",
+    "Beyond testing, I am deeply engaged with AI-driven productivity: from agentic coding pipelines and workflow automation (n8n) to AI-assisted content creation and WordPress-based digital solutions. I adapt quickly, communicate clearly, and deliver results whether I am debugging a system or designing a business workflow."
+  ],
+  "quickFacts": {
+    "basedIn": "Chattogram, Bangladesh",
+    "focus": "Software QA · MIS Operations · AI Tooling",
+    "currentlyLearning": "Agentic AI workflows, k6 performance testing",
+    "languages": ["Bangla", "English"]
+  },
+  "social": {
+    "github": "https://github.com/NafisFuadTanvir",
+    "linkedin": "https://www.linkedin.com/in/nafis-fuad-tanvir-2a17bb232/",
+    "email": "nafisfuadtanvir@example.com"
+  },
+  "experience": [
+    {
+      "id": "mgh-mis",
+      "role": "MIS Officer",
+      "company": "MGH Group",
+      "location": "Chattogram, Bangladesh",
+      "startDate": "2025-01",
+      "endDate": "2025-05",
+      "bullets": [
+        "Managed and maintained management information systems across multiple business units.",
+        "Generated data reports and dashboards using Power BI to support operations decisions.",
+        "Identified and resolved data integrity issues across interconnected systems.",
+        "Coordinated cross-departmental data flows, improving reporting turnaround by 30%."
+      ],
+      "type": "full-time"
+    },
+    {
+      "id": "robotech-intern",
+      "role": "Software Engineer Intern",
+      "company": "Robo Tech Valley",
+      "location": "Bangladesh",
+      "startDate": "2022-06",
+      "endDate": "2022-12",
+      "bullets": [
+        "Contributed to full-stack features using React and Node.js.",
+        "Wrote manual test cases and performed regression testing on releases.",
+        "Participated in daily Scrum stand-ups and sprint planning sessions."
+      ],
+      "type": "internship"
+    }
+  ],
+  "education": [
+    {
+      "id": "gub-cse",
+      "institution": "Green University of Bangladesh",
+      "degree": "B.Sc.",
+      "field": "Computer Science and Engineering",
+      "startYear": 2020,
+      "endYear": 2024,
+      "cgpa": "3.54/4",
+      "note": "Final result published October 3, 2024"
+    },
+    {
+      "id": "sir-asutosh-hsc",
+      "institution": "Sir Asutosh Government College, Chattogram",
+      "degree": "HSC",
+      "field": "Science",
+      "startYear": null,
+      "endYear": 2019,
+      "cgpa": "3.75/5"
+    },
+    {
+      "id": "gomdandi-ssc",
+      "institution": "Gomdandi Pilot High School, Boalkhali, Chattogram",
+      "degree": "SSC",
+      "field": "Science",
+      "startYear": null,
+      "endYear": 2017,
+      "cgpa": "4.64/5"
+    }
+  ],
+  "certifications": [
+    {
+      "id": "road-to-sdet-b16",
+      "name": "Full Stack SQA & Software Test Automation",
+      "issuer": "Road to SDET",
+      "year": 2025,
+      "batch": "Batch 16",
+      "credentialUrl": "https://drive.google.com/drive/folders/1u1IB8wI-vluzPc0brhLXg_R-Xbxpdnbo",
+      "image": "/cert-road-to-sdet.jpg"
+    },
+    {
+      "id": "ai-django-isl",
+      "name": "AI Based Web Development with Django",
+      "issuer": "Innovative Skills Ltd",
+      "year": 2024,
+      "image": "/cert-ai-django.jpg"
+    },
+    {
+      "id": "react-isl",
+      "name": "React JS for Backend Developer",
+      "issuer": "Innovative Skills Ltd",
+      "year": 2024,
+      "image": "/cert-react-js.jpg"
+    }
+  ],
+  "publications": [
+    {
+      "id": "elsevier-pub-1",
+      "title": "Research publication — title to be confirmed",
+      "venue": "Elsevier",
+      "year": 2023,
+      "quartile": "Q1"
+    }
+  ],
+  "leadership": [
+    {
+      "id": "ieee-program-coord",
+      "role": "Program Coordinator",
+      "organization": "IEEE Computer Society — GUB Chapter",
+      "startYear": 2023,
+      "endYear": 2024,
+      "description": "Executive Committee 2023 — Program Co-Ordinator, Batch 201",
+      "image": "/leadership-ieee.jpg",
+      "bullets": [
+        "Coordinated national technical events and workshops involving students, industry professionals, and university stakeholders.",
+        "Managed planning, communication, scheduling, and execution while ensuring successful event delivery."
+      ]
+    },
+    {
+      "id": "sti-event-manager",
+      "role": "Event Manager & Technical Session Handler",
+      "organization": "Software Testing Institute (STI) — Green University",
+      "startYear": 2023,
+      "endYear": 2023,
+      "description": "Certificate of Appreciation — 5th International Conference on Sustainable Technologies for Industry 5.0 (STI 2023), Dec 9–10, 2023",
+      "image": "/leadership-sti.jpg",
+      "bullets": [
+        "Managed technical sessions for more than 100 participants and coordinated speakers, logistics, and event operations."
+      ]
+    }
+  ],
+  "skillGroups": [
+    {
+      "group": "Test automation",
+      "skills": [
+        { "name": "Selenium", "proficiency": "Daily" },
+        { "name": "Playwright (JS/TS)", "proficiency": "Daily" },
+        { "name": "TestNG", "proficiency": "Daily" },
+        { "name": "JUnit", "proficiency": "Comfortable" },
+        { "name": "Mocha", "proficiency": "Comfortable" }
+      ]
+    },
+    {
+      "group": "API & performance",
+      "skills": [
+        { "name": "Postman", "proficiency": "Daily" },
+        { "name": "Newman", "proficiency": "Daily" },
+        { "name": "Rest Assured", "proficiency": "Comfortable" },
+        { "name": "JMeter", "proficiency": "Comfortable" }
+      ]
+    },
+    {
+      "group": "AI literacy",
+      "skills": [
+        { "name": "Agentic coding (Claude)", "proficiency": "Daily" },
+        { "name": "Antigravity IDE", "proficiency": "Daily" },
+        { "name": "OpenCode", "proficiency": "Comfortable" },
+        { "name": "Cursor", "proficiency": "Comfortable" },
+        { "name": "AI image generation", "proficiency": "Daily" },
+        { "name": "AI video creation", "proficiency": "Comfortable" }
+      ]
+    },
+    {
+      "group": "Workflow & automation",
+      "skills": [
+        { "name": "n8n automation", "proficiency": "Comfortable" },
+        { "name": "WordPress + CartFlow", "proficiency": "Comfortable" },
+        { "name": "Canva", "proficiency": "Daily" },
+        { "name": "AI graphic design", "proficiency": "Comfortable" }
+      ]
+    },
+    {
+      "group": "Data & operations",
+      "skills": [
+        { "name": "SQL", "proficiency": "Comfortable" },
+        { "name": "Power BI", "proficiency": "Comfortable" },
+        { "name": "Jira", "proficiency": "Daily" },
+        { "name": "MS Office", "proficiency": "Daily" }
+      ]
+    },
+    {
+      "group": "Soft skills",
+      "skills": [
+        { "name": "Leadership", "proficiency": "Daily" },
+        { "name": "Team collaboration", "proficiency": "Daily" },
+        { "name": "Communication", "proficiency": "Daily" },
+        { "name": "English (speaking & writing)", "proficiency": "Comfortable" },
+        { "name": "Problem solving", "proficiency": "Daily" },
+        { "name": "Time management", "proficiency": "Daily" }
+      ]
+    },
+    {
+      "group": "Practices",
+      "skills": [
+        { "name": "Agile / Scrum", "proficiency": "Daily" },
+        { "name": "Test design techniques", "proficiency": "Daily" },
+        { "name": "Bug reporting", "proficiency": "Daily" },
+        { "name": "MIS reporting", "proficiency": "Daily" }
+      ]
+    }
+  ],
+  "testingApproach": {
+    "body": "Good test automation is architecture, not scripting. I map risk first: what breaks most, what costs most to miss. Then I pick the right layer — unit for logic, API for contracts, E2E only for paths that matter.",
+    "example": "While testing a money-transfer flow in DailyFinance, a Playwright E2E test caught a race condition where the success toast appeared before the database write completed — meaning a retry would double-post. The fix was a server-side idempotency key. The test stayed to prevent regressions."
+  }
+}

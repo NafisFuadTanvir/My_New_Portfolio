@@ -1,0 +1,146 @@
+{
+  "featuredSlugs": ["govshield-bd", "bangladesh-news-monitor", "geoinsight-bd"],
+  "projects": [
+    {
+      "slug": "govshield-bd",
+      "title": "GovShield BD",
+      "outcome": "Detects fake and lookalike Bangladesh government websites before citizens are phished.",
+      "role": "Lead Developer & QA",
+      "stack": ["FastAPI", "React", "PostgreSQL", "Docker", "Alembic"],
+      "status": "active",
+      "featured": true,
+      "githubSlug": "GovShield-BD",
+      "problem": "Lookalike government portals trick citizens into submitting personal data and payments to fraudulent sites. No automated early-warning system existed for Bangladesh's government domain space.",
+      "approach": "Built a 12-module detection pipeline: CT log monitoring ingests new certificate registrations in near-real-time, a visual similarity engine compares screenshots against known-good government pages, and an incident response module flags confirmed fakes for human review.",
+      "keyFeatures": [
+        "Certificate Transparency log monitoring for .bd domains",
+        "Visual similarity engine using perceptual hashing",
+        "IOC management and incident response workflow",
+        "Alembic-managed PostgreSQL migrations",
+        "Dockerised multi-service deployment"
+      ],
+      "testingStrategy": {
+        "types": ["Unit", "Integration", "E2E", "Security smoke"],
+        "tools": ["Playwright", "Pytest", "Postman/Newman"],
+        "coverageNote": "Critical detection paths covered end-to-end; API contract tests run in CI.",
+        "bugsFound": "Integration test caught a timing bug where CT log entries were ingested before the similarity engine was ready, causing silent drops. Added a queue-based handoff with retry."
+      },
+      "improvements": "Add ML-based URL structure analysis to catch IDN homograph attacks; move visual engine to a GPU-backed worker.",
+      "screenshots": []
+    },
+    {
+      "slug": "bangladesh-news-monitor",
+      "title": "Bangladesh News Monitor",
+      "outcome": "Scrapes, categorises and surfaces Bangladeshi news in real time with Telegram alerts.",
+      "role": "Full-Stack Developer & QA",
+      "stack": ["Python", "React", "Docker", "Telegram Bot API"],
+      "status": "active",
+      "featured": true,
+      "githubSlug": "Bangladesh-News-Monitor",
+      "problem": "No single dashboard aggregates news from Bangladesh's fragmented media landscape with automatic topic tagging.",
+      "approach": "Scraper layer pulls from major outlets on a cron schedule. An AI categoriser tags articles by topic. A React dashboard renders a filterable feed. Telegram bot delivers breaking-news alerts on configurable keywords.",
+      "keyFeatures": [
+        "Multi-source scraper with adaptive selectors",
+        "AI-powered news categorisation",
+        "Real-time Telegram alert delivery",
+        "Fully Dockerised — one command to run",
+        "Filterable React dashboard"
+      ],
+      "testingStrategy": {
+        "types": ["Unit", "Integration", "Scraper regression"],
+        "tools": ["Pytest", "Playwright"],
+        "coverageNote": "Scraper tests snapshot expected article structure; failures surface selector drift quickly.",
+        "bugsFound": "Unit test caught a categoriser edge-case where articles with no body text caused a division-by-zero in the TF-IDF scorer."
+      },
+      "improvements": "Add multilingual support for Bangla articles; replace polling-based ingestion with WebSocket-based push from supported outlets.",
+      "screenshots": []
+    },
+    {
+      "slug": "geoinsight-bd",
+      "title": "GeoInsight BD",
+      "outcome": "Geospatial analytics platform for Bangladesh with time-series data, message queues and object storage.",
+      "role": "Backend Developer & QA",
+      "stack": ["TimescaleDB", "RabbitMQ", "Redis", "MinIO", "Node.js", "Python", "Next.js"],
+      "status": "wip",
+      "featured": true,
+      "githubSlug": "GeoInsight-BD",
+      "problem": "Geospatial time-series data for Bangladesh (weather, traffic, environmental sensors) has no unified analytics layer accessible to researchers and NGOs.",
+      "approach": "Node.js API gateway routes ingest requests to a Python analytics service via RabbitMQ. TimescaleDB stores hypertables for efficient time-range queries. MinIO stores raw data files and generated map tiles. Next.js dashboard visualises the data.",
+      "keyFeatures": [
+        "TimescaleDB hypertables for time-series geospatial data",
+        "RabbitMQ-based async processing pipeline",
+        "Redis caching layer for hot queries",
+        "MinIO object storage for raw datasets",
+        "Next.js interactive map dashboard"
+      ],
+      "testingStrategy": {
+        "types": ["Unit", "Load", "Integration"],
+        "tools": ["JMeter", "Pytest", "Jest"],
+        "coverageNote": "JMeter load tests validate time-range query performance under concurrent reads.",
+        "bugsFound": "Load test revealed Redis cache invalidation was not scoped per-tenant, causing one user's stale cache to be served to another during concurrent requests."
+      },
+      "improvements": "Kubernetes orchestration; streaming ingest via Kafka for real-time sensor feeds.",
+      "screenshots": []
+    },
+    {
+      "slug": "aamar-dokan",
+      "title": "Aamar Dokan",
+      "outcome": "Full-stack e-commerce platform built with Next.js and TypeScript.",
+      "role": "Full-Stack Developer",
+      "stack": ["TypeScript", "Next.js"],
+      "status": "active",
+      "featured": false,
+      "githubSlug": "Aamar-Dokan"
+    },
+    {
+      "slug": "money-api-testing",
+      "title": "Money API Testing",
+      "outcome": "End-to-end API test suite for a money-transfer flow using Postman and Newman.",
+      "role": "QA Engineer",
+      "stack": ["JavaScript", "Postman", "Newman"],
+      "status": "maintained",
+      "featured": false,
+      "githubSlug": "Money_Api_Testing"
+    },
+    {
+      "slug": "dailyfinance-playwright",
+      "title": "DailyFinance E2E Automation",
+      "outcome": "Page-object-model Playwright suite covering full transaction flows with CI integration.",
+      "role": "QA Automation Engineer",
+      "stack": ["TypeScript", "Playwright"],
+      "status": "maintained",
+      "featured": false,
+      "githubSlug": "DailyFinance-EndToEnd-Automation-using-playwright"
+    },
+    {
+      "slug": "api-automation-pom",
+      "title": "API Automation with Playwright POM",
+      "outcome": "Demonstrates POM architecture for API testing using Playwright's request fixtures.",
+      "role": "QA Automation Engineer",
+      "stack": ["TypeScript", "Playwright"],
+      "status": "maintained",
+      "featured": false,
+      "githubSlug": "API-AUTOMATION-WITH-PLAYWRIGHT-FOLLOWING-POM"
+    },
+    {
+      "slug": "dmoney-playwright",
+      "title": "Dmoney E2E Testing",
+      "outcome": "End-to-end test suite for a fintech demo app using Playwright and TypeScript.",
+      "role": "QA Automation Engineer",
+      "stack": ["TypeScript", "Playwright"],
+      "status": "maintained",
+      "featured": false,
+      "githubSlug": "Dmoney-endtoendTesting-with-playwright"
+    },
+    {
+      "slug": "youtube-automation",
+      "title": "YouTube Automation Project",
+      "outcome": "Python-based automation scripts for YouTube workflow tasks.",
+      "role": "Developer",
+      "stack": ["Python"],
+      "status": "archived",
+      "featured": false,
+      "githubSlug": "YouTube-Automation-Project"
+    }
+  ]
+}

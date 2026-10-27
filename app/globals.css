@@ -1,26 +1,534 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Design Tokens — Dark Edition ───────────────────────────────────────────
+   Deep warm charcoal · amber-warm text · vermilion accent
+   Single dark theme — no light mode.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root,
+.dark {
+  /* Core palette */
+  --color-bg:         #0C0B09;   /* Deep warm near-black   */
+  --color-surface-1:  #141310;   /* Slightly lifted surface */
+  --color-surface-2:  #1D1B17;   /* Card / elevated bg      */
+  --color-fg:         #F0EBE0;   /* Warm off-white text     */
+  --color-fg-muted:   #8A8678;   /* Muted warm grey         */
+  --color-accent:     #FF5A2B;   /* Lifted vermilion        */
+  --color-accent-dim: #C63D17;   /* Deeper accent for glow  */
+  --color-amber:      #F5A623;   /* Warm amber highlight    */
+  --color-border:     #252320;   /* Subtle border           */
+  --color-border-hi:  #3A3830;   /* Highlighted border      */
+  --color-card-bg:    var(--color-surface-2);
+  --color-surface:    var(--color-surface-2);
+  --color-paper:      var(--color-fg);
+  --color-ink:        var(--color-fg);
+  --color-rule:       var(--color-border);
+  --color-muted:      var(--color-fg-muted);
+
+  /* Background glow positions */
+  --glow-top:    radial-gradient(ellipse 80% 50% at 60% -10%, rgba(255,90,43,0.12) 0%, transparent 70%);
+  --glow-mid:    radial-gradient(ellipse 60% 40% at 10% 50%, rgba(245,166,35,0.05) 0%, transparent 60%);
+
+  /* Focus ring */
+  --focus-ring: 2px solid var(--color-accent);
+  --focus-ring-offset: 2px;
 }
 
+
+/* ─── Tailwind theme extension ────────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-bg:        var(--color-bg);
+  --color-fg:        var(--color-fg);
+  --color-accent:    var(--color-accent);
+  --color-muted:     var(--color-fg-muted);
+  --color-border:    var(--color-border);
+  --color-card:      var(--color-card-bg);
+  --color-surface:   var(--color-surface);
+
+  /* Fonts (set by next/font via CSS variables) */
+  --font-display:    var(--font-fraunces);
+  --font-sans:       var(--font-geist);
+  --font-mono:       var(--font-jetbrains);
+
+  /* Fluid type scale using clamp() — PRD §7 */
+  --text-hero:       clamp(3rem, 8vw, 9rem);
+  --text-display:    clamp(2rem, 5vw, 4rem);
+  --text-heading:    clamp(1.5rem, 3vw, 2.25rem);
+  --text-subheading: clamp(1.125rem, 2vw, 1.5rem);
+  --text-body:       clamp(1rem, 1.5vw, 1.125rem);
+  --text-small:      clamp(0.75rem, 1vw, 0.875rem);
+  --text-mono:       clamp(0.7rem, 0.9vw, 0.8rem);
+
+  /* Spacing */
+  --section-gap:     clamp(4rem, 10vw, 8rem);
+
+  /* Border radius — hard edges per PRD §7 */
+  --radius-card:     4px;
+  --radius-chip:     4px;
+  --radius-btn:      4px;
+
+  /* Breakpoints */
+  --breakpoint-sm:   640px;
+  --breakpoint-md:   768px;
+  --breakpoint-lg:   1024px;
+  --breakpoint-xl:   1280px;
+  --breakpoint-2xl:  1536px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Base reset & typography ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  /* Layered: dot-grid + top-right vermilion glow + mid-left amber whisper */
+  background-image:
+    var(--glow-top),
+    var(--glow-mid),
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+  background-size: auto, auto, 28px 28px;
+  background-attachment: fixed;
+  color: var(--color-fg);
+  font-family: var(--font-geist, system-ui, sans-serif);
+  font-size: var(--text-body);
+  line-height: 1.55;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Max line length for readability */
+p,
+li {
+  max-width: 68ch;
+}
+
+/* Display font for headings */
+h1, h2, h3, h4 {
+  font-family: var(--font-fraunces, Georgia, serif);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+/* Monospace — used for annotations, section numbers, badges */
+code,
+pre,
+kbd,
+.mono {
+  font-family: var(--font-jetbrains, "Courier New", monospace);
+  font-size: var(--text-mono);
+}
+
+/* ─── Focus ring — accent color, WCAG AA ─────────────────────────────────── */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ─── Thin rule dividers ─────────────────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 0;
+}
+
+/* ─── Layout utilities ───────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
+/* 12-column grid */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  .grid-12 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid-12 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Section number annotation style */
+.section-num {
+  font-family: var(--font-jetbrains, monospace);
+  font-size: var(--text-mono);
+  color: var(--color-fg-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Accent underline draw animation */
+.underline-draw {
+  position: relative;
+  text-decoration: none;
+}
+.underline-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: width 0.25s ease;
+}
+.underline-draw:hover::after,
+.underline-draw:focus-visible::after {
+  width: 100%;
+}
+
+/* Chip / badge */
+.chip {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-chip);
+  font-family: var(--font-jetbrains, monospace);
+  font-size: var(--text-mono);
+  color: var(--color-fg-muted);
+  line-height: 1.4;
+}
+
+/* Card */
+.card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover {
+  border-color: var(--color-border-hi);
+  box-shadow: 0 0 0 1px var(--color-border-hi), 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-btn);
+  font-size: var(--text-small);
+  font-weight: 600;
+  transition: top 0.15s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Selection color */
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ─── Theme toggle button ──────────────────────────────────────────────────── */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3em 0.75em;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  color: var(--color-fg-muted);
+  font-family: var(--font-jetbrains, monospace);
+  font-size: var(--text-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.15s, color 0.15s;
+}
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.theme-toggle:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ─── Responsive visibility ──────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .hidden-mobile { display: none !important; }
+}
+@media (min-width: 768px) {
+  .hidden-desktop { display: none !important; }
+}
+
+/* ─── Section layout ──────────────────────────────────────────────────────── */
+.section {
+  padding-block: var(--section-gap);
+  border-bottom: 1px solid var(--color-border);
+}
+.section:last-of-type {
+  border-bottom: none;
+}
+
+/* ─── CTA buttons ──────────────────────────────────────────────────────────  */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65em 1.4em;
+  background: var(--color-fg);
+  color: var(--color-bg);
+  border: 1px solid var(--color-fg);
+  border-radius: var(--radius-btn);
+  font-family: var(--font-jetbrains, monospace);
+  font-size: var(--text-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.btn-primary:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+.btn-primary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65em 1.4em;
+  background: transparent;
+  color: var(--color-fg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  font-family: var(--font-jetbrains, monospace);
+  font-size: var(--text-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-secondary:hover {
+  border-color: var(--color-fg);
+  color: var(--color-fg);
+}
+.btn-secondary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ─── Inverted (dark band) ────────────────────────────────────────────────── */
+.band-invert {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.dark .band-invert {
+  background: var(--color-surface);
+  color: var(--color-fg);
+}
+.band-invert .section-num,
+.band-invert .mono,
+.band-invert code {
+  color: var(--color-accent);
+}
+
+/* ─── Form elements ──────────────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.field label {
+  font-family: var(--font-jetbrains, monospace);
+  font-size: var(--text-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.65em 0.9em;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  color: var(--color-fg);
+  font-family: var(--font-geist, sans-serif);
+  font-size: var(--text-body);
+  line-height: 1.4;
+  transition: border-color 0.15s;
+  resize: vertical;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--color-fg-muted);
+  opacity: 0.6;
+}
+
+/* ─── Status badge ───────────────────────────────────────────────────────── */
+.status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  margin-right: 0.4em;
+  vertical-align: middle;
+}
+.status-active  { color: #3a8a50; }
+.status-wip     { color: var(--color-accent); }
+.status-archived{ color: var(--color-fg-muted); }
+.status-maintained { color: #4a7fc1; }
+
+/* ─── Timeline ───────────────────────────────────────────────────────────── */
+.timeline {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border);
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 3rem;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -1.5rem;
+  top: 0.55rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* ─── Language dot (repos) ───────────────────────────────────────────────── */
+.lang-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── Load sequence ticker ───────────────────────────────────────────────── */
+@keyframes ticker-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ticker-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ─── Motion polish ──────────────────────────────────────────────────────── */
+
+/* Promote nav to GPU layer for smooth hide/show */
+header[role="banner"] {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Cursor: pointer on work rows */
+.work-row {
+  cursor: pointer;
+}
+
+/* Smooth transition for chip hover */
+.chip {
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.chip:hover {
+  border-color: var(--color-accent);
+  color: var(--color-fg);
+}
+
+/* btn-primary magnetic wrapper — ensure overflow visible */
+.btn-primary,
+.btn-secondary {
+  position: relative;
+  overflow: visible;
+}
+
+/* Timeline dot pop-in */
+.timeline-item::before {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.timeline-item:hover::before {
+  transform: translateX(-1.5rem) scale(1.6);
+  background: var(--color-accent);
+}
+
+/* Repos card hover lift */
+#repos .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#repos .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.dark #repos .card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
